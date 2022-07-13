@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./sqlite.db"
+}
+
+model User {
+  id        Int       @id
+  createdAt DateTime  @default(now())
+  language  String    @default("en")
+  stickers  Sticker[]
+
+  @@map("users")
+}
+
+model Sticker {
+  id      Int     @id
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int
+  aliases Alias[]
+
+  @@map("stickers")
+}
+
+model Alias {
+  id        Int     @id
+  sticker   Sticker @relation(fields: [stickerId], references: [id])
+  stickerId Int
+  alias     String
+
+  @@map("aliases")
+}
