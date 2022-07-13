@@ -15,3 +15,7 @@ export type IContext = BaseContext &
 export type TextContext = Filter<IContext, 'message:text'>
 
 export type InlineContext = Filter<IContext, 'inline_query'>
+
+export type StickerContext = Filter<IContext, 'msg:sticker'>
+
+export type CallbackContext = Filter<IContext, 'callback_query:data'>

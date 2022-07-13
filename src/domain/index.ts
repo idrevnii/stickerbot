@@ -1,2 +1,3 @@
-export { insertUser, findUser, updateUser, deleteUser } from './db'
-export { findOrCreateUser } from './user'
+export { findOrCreateUser, changeActiveSticker, getActiveSticker } from './user'
+export { startProcessingSticker, endProcessingSticker } from './sticker'
+export { addAlias } from './alias'

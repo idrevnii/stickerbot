@@ -5,6 +5,10 @@ const prisma = new PrismaClient()
 
 export const users = prisma.user
 
+export const stickers = prisma.sticker
+
+export const aliases = prisma.alias
+
 export async function startDatabase() {
     return prisma
         .$connect()

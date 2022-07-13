@@ -8,27 +8,28 @@ datasource db {
 }
 
 model User {
-  id        Int       @id
-  createdAt DateTime  @default(now())
-  language  String    @default("en")
-  stickers  Sticker[]
+  id            Int       @id @unique
+  createdAt     DateTime  @default(now())
+  language      String    @default("en")
+  activeSticker String    @default("0")
+  stickers      Sticker[]
 
   @@map("users")
 }
 
 model Sticker {
-  id      Int     @id
-  user    User    @relation(fields: [userId], references: [id])
-  userId  Int
-  aliases Alias[]
+  id        String   @id @unique // file_id of sticker
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  aliases   Alias[]
 
   @@map("stickers")
 }
 
 model Alias {
-  id        Int     @id
   sticker   Sticker @relation(fields: [stickerId], references: [id])
-  stickerId Int
+  stickerId String  @id @unique
   alias     String
 
   @@map("aliases")

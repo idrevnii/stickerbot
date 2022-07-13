@@ -3,7 +3,12 @@ import { Bot } from 'grammy'
 import { ignoreOld, sequentialize } from 'grammy-middlewares'
 import { hydrateReply, parseMode } from '@grammyjs/parse-mode'
 import { autoRetry } from '@grammyjs/auto-retry'
-import { inlineRouter, textRouter } from './routes/'
+import {
+    callbackRouter,
+    inlineRouter,
+    stickerRouter,
+    textRouter
+} from './routes/'
 import { getErrorHandling } from './errorHandling'
 import { getHelpers, getI18n } from './middlewares'
 import type { IContext } from './models'
@@ -25,7 +30,13 @@ export async function startBot() {
 
     bot.on('message:text', textRouter)
 
+    bot.on('msg:sticker', stickerRouter)
+
     bot.on('inline_query', inlineRouter)
+
+    bot.on('callback_query:data', callbackRouter)
+
+    bot.on('msg', (ctx) => logger.info(ctx.update))
 
     bot.start()
     logger.info('Bot started!')

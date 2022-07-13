@@ -1,1 +1,6 @@
-start: Hello!
+start: Hello! Just send me sticker which you want to add
+sticker_added: Sticker added! Now let add a few aliases
+sticker_error: Can't add sticker, try again
+alias_added: Alias added!
+alias_confirmed: Confirm?
+sticker_processed: Ended sticker processing!
