@@ -9,6 +9,8 @@ export const stickers = prisma.sticker
 
 export const aliases = prisma.alias
 
+export const transaction = prisma.$transaction.bind(prisma)
+
 export async function startDatabase() {
     return prisma
         .$connect()

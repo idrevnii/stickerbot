@@ -31,6 +31,7 @@
     "@grammyjs/router": "^2.0.0",
     "@prisma/client": "^4.0.0",
     "dotenv": "^16.0.1",
+    "fuse.js": "^6.6.2",
     "grammy": "^1.9.0",
     "grammy-middlewares": "^1.0.11",
     "pino": "^8.1.0",

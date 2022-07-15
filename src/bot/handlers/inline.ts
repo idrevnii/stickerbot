@@ -1,12 +1,14 @@
+import { InlineQueryResult } from 'grammy/out/platform.node'
+import { queryStickersByAlias } from '../../domain'
 import { InlineContext } from '../models'
 
-export function inlineHandler(ctx: InlineContext) {
-    return ctx.answerInlineQuery([
-        {
-            type: 'sticker',
-            id: '0',
-            sticker_file_id:
-                'CAACAgIAAxkBAAMXYs6Im7L-__7kzr8W_fFM8MDAPOMAAhcWAAJubeBI8zpwtWeuQIspBA'
-        }
-    ])
+export async function inlineHandler(ctx: InlineContext) {
+    const result = (
+        await queryStickersByAlias(ctx.from.id, ctx.inlineQuery.query)
+    ).map<InlineQueryResult>((sticker) => ({
+        type: 'sticker',
+        id: `${sticker.item.id}`,
+        sticker_file_id: sticker.item.file_id
+    }))
+    return ctx.answerInlineQuery(result)
 }

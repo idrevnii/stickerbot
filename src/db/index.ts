@@ -1,1 +1,8 @@
-export { startDatabase, stopDatabase, users, stickers, aliases } from './start'
+export {
+    startDatabase,
+    stopDatabase,
+    transaction,
+    users,
+    stickers,
+    aliases
+} from './start'

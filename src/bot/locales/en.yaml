@@ -1,6 +1,11 @@
-start: Hello! Just send me sticker which you want to add
-sticker_added: Sticker added! Now let add a few aliases
-sticker_error: Can't add sticker, try again
-alias_added: Alias added!
-alias_confirmed: Confirm?
-sticker_processed: Ended sticker processing!
+start: ✋ Hi! Just send me a sticker and I'll remember it
+sticker_added: ✅ The sticker has been added! Now let's add some aliases to it (at least one)
+sticker_already_added: ❌ I already know this sticker
+sticker_processed: ✅ Finished adding the sticker!
+sticker_delete: ❌ Delete the sticker
+sticker_not_found: ❌ Sticker not found
+sticker_already_processing: ❌ Finish the previous sticker addition
+sticker_deleted: ✅ The sticker has been deleted
+sticker_error: ❌ I can't add a sticker, try again
+alias_added: ✅ Alias added, end the procedure or add more?
+alias_confirmed: ❌ End

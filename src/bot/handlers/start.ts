@@ -4,6 +4,6 @@ import { TextContext } from '../models'
 export async function startHandler(ctx: TextContext) {
     const userId = ctx.from.id
     const language = ctx.from.language_code || 'en'
-    await findOrCreateUser(userId, language)
+    await findOrCreateUser(userId, ctx.whois(ctx.from), language)
     return ctx.reply(ctx.i18n.t('start'))
 }
