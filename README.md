@@ -1,19 +1,16 @@
 # About the project
 
-This is bot template powered by `grammy` and `prisma`. It also constains preconfigured logger `pino` and a bunch of helpful middlewares for `grammy`.
+This is a bot for Telegram that lets you remember your stickers and make them available through inlineQuery `(@(bot_name))`. Written using `grammY`, `Prisma` and `Fuse.js`.
 
 # Installation
 
-1. Click the 'Use this template' button and follow instructions OR `git clone https://github.com/idrevnii/grammy-template`
+1. Get a free Bot Token from BotFather in Telegram
+2. Enable inline queries in your bot
+3. Clone the repo git clone `https://github.com/idrevnii/stickerbot`
+4. Insall NPM packages `npm install` or `yarn`
+5. Create in root directory `.env` file with field `BOT_TOKEN` and assign your token from BotFather
+6. Run the bot npm start or yarn start
 
-2. Change the project name in `package.json' and you can start write your code :)
+# Usage
 
-# Commands
-
-All commands below are written with `yarn` but you can also use `npm run`.
-
--   `yarn develop` Will run nodemon, which will keep watch for changes in src and will restart your project
--   `yarn build` Builds your project to JS
--   `yarn start` Builds and start your project
--   `yarn lint` Launches ESLint for linting your code
--   `yarn format` Launches Prettier for format your code
+First add stickers in private chat with the bot, then you can use them in any chat by typing alias with `@(your_bot_name) (alias)`
