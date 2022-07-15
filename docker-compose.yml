@@ -8,3 +8,4 @@ services:
         container_name: 'stickerbot'
         volumes:
             - ./../stickerlogs:/usr/src/app/logs
+            - ./../stickerdb:/usr/src/app/prisma
