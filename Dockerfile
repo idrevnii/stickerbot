@@ -6,8 +6,8 @@ COPY package*.json tsconfig.json ./
 
 RUN npm install
 COPY . .
-RUN npm run build
 RUN npx prisma migrate deploy
+RUN npm run build
 
 RUN npm install --production
 
