@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+        inputs:
+            tag:
+                description: tag
+                required: true
+
+jobs:
+    Build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy by ssh
+              uses: appleboy/ssh-action@master
+              env:
+                  TOKEN: ${{ secrets.TOKEN }}
+              with:
+                  host: ${{ secrets.SSH_HOST }}
+                  username: ${{ secrets.SSH_USER }}
+                  password: ${{ secrets.SSH_PASSWORD }}
+                  envs: TOKEN
+                  script: |
+                      rm -rf stickerbot && git clone https://github.com/idrevnii/stickerbot
+                      cd stickerbot && TOKEN=$TOKEN docker-compose up -d --build
+            - name: Telegram notification
+              uses: yanzay/notify-telegram@v0.1.0
+              if: always()
+              with:
+                  chat: ${{ secrets.NOTIFICATION_CHAT_ID }} # user id or channel name secret
+                  token: ${{ secrets.NOTIFICATION_TOKEN }} # token secret
+                  status: ${{ job.status }} # do not modify this line

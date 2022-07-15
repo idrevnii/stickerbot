@@ -1,0 +1,10 @@
+version: '3'
+services:
+    skozubot:
+        build:
+            context: .
+            args:
+                TOKEN: ${TOKEN}
+        container_name: 'stickerbot'
+        volumes:
+            - ./../stickerlogs:/usr/src/app/logs
