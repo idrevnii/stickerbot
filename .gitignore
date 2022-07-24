@@ -4,3 +4,4 @@ build
 .env
 prisma/*
 !prisma/schema.prisma
+!prisma/migrations
