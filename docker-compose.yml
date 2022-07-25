@@ -6,7 +6,6 @@ services:
             args:
                 TOKEN: ${TOKEN}
         container_name: 'stickerbot'
-        command: sh -c "/usr/src/app/init.sh && node build/index.js"
         volumes:
             - ./../stickerlogs:/usr/src/app/logs
-            - ./../stickerdb:/usr/src/app/prisma
+            - ./../stickerdb:/usr/src/app/db

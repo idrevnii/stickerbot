@@ -6,9 +6,8 @@ COPY package*.json yarn.lock ./
 
 RUN npm install
 COPY . .
-# Dirty hack for migration
-COPY ./prisma ./prisma_backup 
 RUN npx prisma generate
+RUN npx prisma migrate deploy
 
 RUN npm run build
 
