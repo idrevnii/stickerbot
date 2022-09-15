@@ -16,7 +16,7 @@ export async function changeActiveSticker(id: number, stickerId: number) {
 
 export async function getActiveSticker(id: number) {
     const user = await findUser(id)
-    if (user && user?.activeSticker !== -1) {
+    if (user && user?.activeSticker !== 0) {
         return user.activeSticker
     }
     return

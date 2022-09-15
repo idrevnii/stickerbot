@@ -7,3 +7,5 @@ export const stickerRouter = new Router<StickerContext>(() => {
 })
 
 stickerRouter.route('sticker', stickerHandler)
+
+stickerRouter.otherwise((ctx) => ctx.reply('Empty route'))

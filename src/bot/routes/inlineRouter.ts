@@ -7,3 +7,5 @@ export const inlineRouter = new Router<InlineContext>(() => {
 })
 
 inlineRouter.route('inline', inlineHandler)
+
+inlineRouter.otherwise((ctx) => ctx.reply('Empty route'))
