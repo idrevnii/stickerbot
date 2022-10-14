@@ -55,7 +55,7 @@ export async function stickerBulkAliasingHandler(ctx: StickerContext) {
         const uniqueId = ctx.message.sticker.file_unique_id
         const result = await upsertStickerWithBulkAlias(id, stickerId, uniqueId)
         const endKeyboard = new InlineKeyboard().text(
-            ctx.i18n.t('alias_bulk_ended'),
+            ctx.i18n.t('alias_bulk_end'),
             'alias_bulk_ended'
         )
         if (result) {

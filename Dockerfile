@@ -7,7 +7,6 @@ COPY package.json yarn.lock tsconfig.json ./
 RUN npm install
 COPY . .
 RUN npx prisma generate
-RUN npx prisma migrate dev --name dev
 RUN npm run build
 
 RUN npm install --production

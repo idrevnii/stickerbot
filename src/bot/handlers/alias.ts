@@ -33,11 +33,11 @@ export async function aliasConfirmedHandler(ctx: CallbackContext) {
 export async function bulkAliasingStartHandler(ctx: TextContext) {
     const activeAlias = await getActiveBulkAlias(ctx.from.id)
     if (activeAlias) {
-        return ctx.reply(ctx.i18n.t('alias_already_started'))
+        return ctx.reply(ctx.i18n.t('alias_bulk_already_started'))
     }
     const alias = ctx.message.text.split(' ')[1]
     if (!alias) {
-        return ctx.reply(ctx.i18n.t('alias_not_provided'))
+        return ctx.reply(ctx.i18n.t('alias_bulk_not_provided'))
     }
     await startBulkAliasing(ctx.from.id, alias)
     return ctx.reply(ctx.i18n.t('alias_bulk_started'))

@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./sqlite.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -12,7 +12,8 @@ model User {
   createdAt     DateTime  @default(now())
   username      String
   language      String    @default("en")
-  activeSticker Int       @default(-1)
+  activeSticker Int?       
+  activeBulkAlias String?
   stickers      Sticker[]
 
   @@map("users")
