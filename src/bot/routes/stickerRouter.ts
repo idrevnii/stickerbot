@@ -1,11 +1,18 @@
 import { Router } from '@grammyjs/router'
-import { stickerHandler } from '../handlers'
+import { isBulkAliasing } from '../../domain/alias'
+import { stickerBulkAliasingHandler, stickerHandler } from '../handlers'
 import { StickerContext } from '../models'
 
-export const stickerRouter = new Router<StickerContext>(() => {
+export const stickerRouter = new Router<StickerContext>(async (ctx) => {
+    if (ctx.from) {
+        const isBulk = await isBulkAliasing(ctx.from.id)
+        if (isBulk) {
+            return 'stickerBulkAliasing'
+        }
+    }
     return 'sticker'
 })
 
 stickerRouter.route('sticker', stickerHandler)
 
-stickerRouter.otherwise((ctx) => ctx.reply('Empty route'))
+stickerRouter.route('stickerBulkAliasing', stickerBulkAliasingHandler)

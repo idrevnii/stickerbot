@@ -8,4 +8,10 @@ sticker_already_processing: ❌ Сначала закончи добавлять
 sticker_deleted: ✅ Стикер удален
 sticker_error: ❌ Не могу добавить стикер, попробуй еще раз
 alias_added: ✅ Алиас добавлен, завершаем процедуру или добавляем еще?
-alias_confirmed: ❌ Завершить
+alias_confirmed: ❌ Завершить?
+alias_bulk_added: ✅ Алиас добавлен
+alias_bulk_failed: ❌ Не могу добавить алиас, попробуй еще раз
+alias_bulk_ended: ❌ Завершить?
+alias_bulk_already_started: ❌ Сначала закончи добавлять прошлый алиас
+alias_bulk_not_provided: ❌ Укажи алиас через пробел
+alias_bulk_started: ✅ Начато групповое добавление алиасов

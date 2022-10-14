@@ -1,14 +1,24 @@
 import Fuse from 'fuse.js'
 import { logger } from '../logger'
-import { deleteSticker, findAllAliases, findSticker, insertSticker } from './db'
-import { changeActiveSticker } from './user'
+import {
+    deleteSticker,
+    findAllAliases,
+    findSticker,
+    insertAlias,
+    insertSticker
+} from './db'
+import { changeActiveSticker, getActiveBulkAlias } from './user'
 
 export async function addSticker(
     userId: number,
-    file_id: string,
-    file_id_unique: string
+    stickerId: string,
+    uniqueStickerId: string
 ) {
-    return insertSticker({ userId, file_id, file_id_unique })
+    return insertSticker({
+        userId,
+        file_id: stickerId,
+        file_id_unique: uniqueStickerId
+    })
 }
 
 export async function removeSticker(stickerId: number) {
@@ -17,9 +27,9 @@ export async function removeSticker(stickerId: number) {
 
 export async function tryToRemoveSticker(
     userId: number,
-    file_id_unique: string
+    uniqueStickerId: string
 ) {
-    const sticker = await findSticker(file_id_unique)
+    const sticker = await findSticker(uniqueStickerId)
     if (sticker) {
         return removeSticker(sticker.id)
             .then(() => {
@@ -62,4 +72,23 @@ export async function queryStickersByAlias(userId: number, alias: string) {
     const fuse = new Fuse(stickersWithAliases, { keys: ['aliases.alias'] })
     const result = fuse.search(alias)
     return result
+}
+
+export async function upsertStickerWithBulkAlias(
+    userId: number,
+    stickerId: string,
+    uniqueStickerId: string
+) {
+    const activeBulkAlias = await getActiveBulkAlias(userId)
+    if (activeBulkAlias) {
+        let sticker = await findSticker(uniqueStickerId)
+        if (!sticker) {
+            sticker = await addSticker(userId, stickerId, uniqueStickerId)
+        }
+        logger.info(
+            `Add bulk alias ${activeBulkAlias} to sticker ${sticker.id}`
+        )
+        return insertAlias({ stickerId: sticker.id, alias: activeBulkAlias })
+    }
+    return false
 }

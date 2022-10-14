@@ -3,7 +3,8 @@ import {
     getActiveSticker,
     isStickerExists,
     startProcessingSticker,
-    tryToRemoveSticker
+    tryToRemoveSticker,
+    upsertStickerWithBulkAlias
 } from '../../domain'
 import { CallbackContext, StickerContext } from '../models'
 
@@ -44,5 +45,24 @@ export async function stickerDeleteHandler(ctx: CallbackContext) {
         }
         await ctx.answerCallbackQuery()
         return ctx.reply(ctx.i18n.t('sticker_deleted'))
+    }
+}
+
+export async function stickerBulkAliasingHandler(ctx: StickerContext) {
+    if (ctx.from?.id) {
+        const id = ctx.from.id
+        const stickerId = ctx.message.sticker.file_id
+        const uniqueId = ctx.message.sticker.file_unique_id
+        const result = await upsertStickerWithBulkAlias(id, stickerId, uniqueId)
+        const endKeyboard = new InlineKeyboard().text(
+            ctx.i18n.t('alias_bulk_ended'),
+            'alias_bulk_ended'
+        )
+        if (result) {
+            return ctx.reply(ctx.i18n.t('alias_bulk_added'), {
+                reply_markup: endKeyboard
+            })
+        }
+        return ctx.reply(ctx.i18n.t('alias_bulk_failed'))
     }
 }

@@ -8,4 +8,10 @@ sticker_already_processing: ❌ Finish the previous sticker addition
 sticker_deleted: ✅ The sticker has been deleted
 sticker_error: ❌ I can't add a sticker, try again
 alias_added: ✅ Alias added, end the procedure or add more?
-alias_confirmed: ❌ End
+alias_confirmed: ❌ End?
+alias_bulk_added: ✅ Alias added
+alias_bulk_failed: ❌ I can't add an alias, try again
+alias_bulk_ended: ❌ End?
+alias_bulk_already_started: ❌ Finish the previous alias addition
+alias_bulk_not_provided: ❌ Provide alias
+alias_bulk_started: ✅ Alias addition started

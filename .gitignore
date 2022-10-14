@@ -1,7 +1,9 @@
 node_modules
 logs
 build
+db
 .env
+yarn-error.log
 prisma/*
 !prisma/schema.prisma
 !prisma/migrations

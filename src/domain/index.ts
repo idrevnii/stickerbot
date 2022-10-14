@@ -1,9 +1,15 @@
-export { findOrCreateUser, changeActiveSticker, getActiveSticker } from './user'
+export {
+    findOrCreateUser,
+    changeActiveSticker,
+    getActiveSticker,
+    getActiveBulkAlias
+} from './user'
 export {
     startProcessingSticker,
     endProcessingSticker,
     tryToRemoveSticker,
     queryStickersByAlias,
-    isStickerExists
+    isStickerExists,
+    upsertStickerWithBulkAlias
 } from './sticker'
-export { addAlias } from './alias'
+export { addAlias, startBulkAliasing, endBulkAliasing } from './alias'
