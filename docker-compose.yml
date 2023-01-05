@@ -6,6 +6,7 @@ services:
             args:
                 TOKEN: ${TOKEN}
         network_mode: 'host'
+        restart: unless-stopped
         container_name: 'stickerbot'
         volumes:
             - ~/storage/stickerlogs:/usr/src/app/logs
